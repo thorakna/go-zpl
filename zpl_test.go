@@ -82,3 +82,33 @@ func TestInputFromArgsNoArgs(t *testing.T) {
 		t.Fatal(diff)
 	}
 }
+
+func TestWithWidthValidation(t *testing.T) {
+	t.Parallel()
+
+	// width greater than MaxLabelSizeInches should return an error
+	_, err := zpl.NewConverter(
+		zpl.WithWidth(16),
+	)
+	if err == nil {
+		t.Fatal("expected error for width > MaxLabelSizeInches")
+	}
+	if err != zpl.ErrInvalidWidth {
+		t.Fatalf("unexpected error for width validation: %v", err)
+	}
+}
+
+func TestWithHeightValidation(t *testing.T) {
+	t.Parallel()
+
+	// height greater than MaxLabelSizeInches should return an error
+	_, err := zpl.NewConverter(
+		zpl.WithHeight(16),
+	)
+	if err == nil {
+		t.Fatal("expected error for height > MaxLabelSizeInches")
+	}
+	if err != zpl.ErrInvalidHeight {
+		t.Fatalf("unexpected error for height validation: %v", err)
+	}
+}

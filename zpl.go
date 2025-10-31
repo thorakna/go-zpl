@@ -108,6 +108,10 @@ func WithDensity(density int) option {
 
 func WithWidth(width int) option {
 	return func(c *converter) error {
+		if width <= 0 || width > MaxLabelSizeInches {
+			return ErrInvalidWidth
+		}
+
 		c.width = width
 
 		return nil
@@ -116,6 +120,10 @@ func WithWidth(width int) option {
 
 func WithHeight(height int) option {
 	return func(c *converter) error {
+		if height <= 0 || height > MaxLabelSizeInches {
+			return ErrInvalidHeight
+		}
+
 		c.height = height
 
 		return nil

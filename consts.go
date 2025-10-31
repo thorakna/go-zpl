@@ -3,6 +3,9 @@ package zpl
 const (
 	PDF = "pdf"
 	PNG = "png"
+	// MaxLabelSizeInches is the maximum label width/height accepted by the
+	// Labelary API (15 inches).
+	MaxLabelSizeInches = 15
 )
 
 func allowedDensities() []int {
